@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8888:8888"  # Expose Jupyter Notebook on port 8888
+    volumes:
+      - ./proje:/app/myfolder  # Sync the local `proje` folder with the container
+    environment:
+      - PYTHONUNBUFFERED=1
+    command: ["jupyter-notebook", "--ip=0.0.0.0", "--no-browser", "--allow-root", "--NotebookApp.token=''"]
